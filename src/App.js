@@ -270,6 +270,7 @@ function App() {
   };
 
   const doMath = ({ firstNum, secondNum, operator }) =>
+    // eslint-disable-next-line no-eval
     eval(`${firstNum} ${operator} (${secondNum})`).toString();
 
   const handleClick = (value) => {
