@@ -1,3 +1,4 @@
+/* eslint-disable default-case */
 import { useState } from "react";
 import Display from "./Display";
 import Button from "./Button";
@@ -5,72 +6,89 @@ import "./App.css";
 
 const buttonArray = [
   {
-    id: "zero",
-    value: 0,
-  },
-  {
     id: "one",
     value: 1,
+    classID: "number",
   },
   {
     id: "two",
     value: 2,
+    classID: "number",
   },
   {
     id: "three",
     value: 3,
+    classID: "number",
   },
   {
     id: "four",
     value: 4,
+    classID: "number",
   },
   {
     id: "five",
     value: 5,
+    classID: "number",
   },
   {
     id: "six",
     value: 6,
+    classID: "number",
   },
   {
     id: "seven",
     value: 7,
+    classID: "number",
   },
   {
     id: "eight",
     value: 8,
+    classID: "number",
   },
   {
     id: "nine",
     value: 9,
+    classID: "number",
+  },
+  {
+    id: "zero",
+    value: 0,
+    classID: "zero",
   },
   {
     id: "equals",
     value: "=",
+    classID: "equals",
   },
   {
     id: "add",
     value: "+",
+    classID: "operator",
   },
   {
     id: "subtract",
     value: "-",
+    classID: "operator",
   },
   {
     id: "multiply",
     value: "*",
+    classID: "operator",
   },
   {
     id: "divide",
     value: "/",
+    classID: "operator",
   },
   {
     id: "decimal",
     value: ".",
+    classID: "operator",
   },
   {
     id: "clear",
     value: "clear",
+    classID: "clear",
   },
 ];
 
@@ -89,7 +107,13 @@ function App() {
     if (number === "0") {
       switch (true) {
         case firstNum === "" && secondNum === "":
+          break;
         case firstNum !== "" && secondNum === "" && operator !== "":
+          setState({
+            ...state,
+            secondNum: number,
+            text: number,
+          });
           break;
         case firstNum !== "" && secondNum === "" && operator === "":
           setState({
@@ -249,17 +273,21 @@ function App() {
 
   return (
     <div className="App">
-      <Display text={state.text} />
-      <div className="keypad">
-        {buttonArray.map((each) => (
-          <Button
-            key={each.id}
-            handleClick={handleClick}
-            text={each.text}
-            setText={each.setText}
-            {...each}
-          />
-        ))}
+      <h1>Calculator Demo</h1>
+      <div className="Calc">
+        <Display text={state.text} />
+        <div className="keypad">
+          {buttonArray.map((each) => (
+            <Button
+              key={each.id}
+              handleClick={handleClick}
+              text={each.text}
+              setText={each.setText}
+              classID={`button ${each.classID}`}
+              {...each}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );
