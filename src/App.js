@@ -122,12 +122,17 @@ function App() {
             text: firstNum + number,
           });
           break;
-        case firstNum !== "" && secondNum !== "" && operator !== "":
+        case firstNum !== "" &&
+          secondNum !== "" &&
+          operator !== "" &&
+          secondNum !== number:
           setState({
             ...state,
             secondNum: secondNum + "0",
             text: operator + secondNum + number,
           });
+          break;
+        case firstNum !== "" && secondNum === number && operator !== "":
           break;
       }
     } else {

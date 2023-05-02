@@ -36,38 +36,38 @@
 h1 {
   font-family: "Courier New", Courier, monospace;
   font-size: 5rem;
-  padding: 1.5rem;
+  padding: 0 0 1rem 0;
 }
 
 /*BUTTON STYLES/////////////////////////*/
 
 .number {
   height: 40px;
-  width: 32%;
+  width: 31%;
   background-color: rgb(138, 212, 237);
   border: solid black 1px;
   border-radius: 10%;
   padding-top: 5px;
-  margin: 0.5px;
+  margin: 0.75px;
   font-family: sans-serif;
   box-shadow: 2px 2px 0 0 rgba(35, 35, 83);
 }
 
 .operator {
   height: 40px;
-  width: 32%;
+  width: 31%;
   background-color: rgb(84, 136, 220);
   border: solid black 1px;
   border-radius: 10%;
   padding-top: 5px;
-  margin: 0.5px;
+  margin: 1px;
   font-family: sans-serif;
   box-shadow: 2px 2px 0 0 rgba(35, 35, 83);
 }
 
 .zero {
   height: 40px;
-  width: 48%;
+  width: 47%;
   border: solid black 1px;
   border-radius: 10%;
   background-color: rgb(138, 212, 237);
@@ -78,7 +78,7 @@ h1 {
 }
 .equals {
   height: 40px;
-  width: 49%;
+  width: 48%;
   border: solid black 1px;
   border-radius: 10%;
   background-color: rgb(228, 224, 224);
