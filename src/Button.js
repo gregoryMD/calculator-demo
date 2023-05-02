@@ -5,9 +5,15 @@ export default function Button({
   setText,
   text,
   classID,
+  datatestid,
 }) {
   return (
-    <div className={classID} id={id} onClick={() => handleClick(value)}>
+    <div
+      className={classID}
+      id={id}
+      data-testid={id}
+      onClick={() => handleClick(value)}
+    >
       <span>{value}</span>
     </div>
   );

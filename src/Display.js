@@ -1,3 +1,7 @@
 export default function Display({ text }) {
-  return <p id="display">{text}</p>;
+  return (
+    <p data-testid="display" id="display">
+      {text}
+    </p>
+  );
 }
