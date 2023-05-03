@@ -1,7 +1,7 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import App from "./App";
 
-describe("App component has all button elements", () => {
+describe("App component contains all necessary calculator inputs", () => {
   it('should contain an "=" button with an id="equals"', () => {
     render(<App />);
     const equalsButton = screen.getByTestId("equals");
@@ -63,14 +63,6 @@ describe("App component has all button elements", () => {
   });
 });
 
-test("Clear button should reset calculator to initial state", () => {
-  render(<App />);
-  const displayElement = screen.getByTestId("display");
-  const clearButton = screen.getByTestId("clear");
-  fireEvent.click(clearButton);
-  expect(displayElement.textContent).toEqual("0");
-});
-
 describe("display element should display user input as it is entered", () => {
   it("should display the first nuber entered", () => {
     render(<App />);
@@ -92,7 +84,7 @@ describe("display element should display user input as it is entered", () => {
     expect(displayElement.textContent).toEqual("+");
   });
 
-  it("should display the second number when entered", () => {
+  it("should display the second number when entered after operator", () => {
     render(<App />);
     const displayElement = screen.getByTestId("display");
     const six = screen.getByTestId("six");
@@ -103,18 +95,77 @@ describe("display element should display user input as it is entered", () => {
     fireEvent.click(three);
     expect(displayElement.textContent).toEqual("+3");
   });
+
+  it("should not display any operator other than minus before a number is entered", () => {
+    render(<App />);
+    const displayElement = screen.getByTestId("display");
+    const plus = screen.getByTestId("add");
+    const minus = screen.getByTestId("subtract");
+    const multiply = screen.getByTestId("multiply");
+    const divide = screen.getByTestId("divide");
+    const six = screen.getByTestId("six");
+
+    fireEvent.click(divide);
+    fireEvent.click(minus);
+    fireEvent.click(multiply);
+    fireEvent.click(plus);
+    fireEvent.click(six);
+    expect(displayElement.textContent).toEqual("-6");
+  });
 });
 
-test("the correct answer should be displayed when the equal button is pressed", () => {
-  render(<App />);
-  const displayElement = screen.getByTestId("display");
-  const six = screen.getByTestId("six");
-  const plus = screen.getByTestId("add");
-  const three = screen.getByTestId("three");
-  const equals = screen.getByTestId("equals");
-  fireEvent.click(six);
-  fireEvent.click(plus);
-  fireEvent.click(three);
-  fireEvent.click(equals);
-  expect(displayElement.textContent).toEqual("9");
+describe("App executes expected calculator functionalties", () => {
+  it("displays correct sum when the equal button is pressed", () => {
+    render(<App />);
+    const displayElement = screen.getByTestId("display");
+    const six = screen.getByTestId("six");
+    const plus = screen.getByTestId("add");
+    const three = screen.getByTestId("three");
+    const equals = screen.getByTestId("equals");
+    fireEvent.click(six);
+    fireEvent.click(plus);
+    fireEvent.click(three);
+    fireEvent.click(equals);
+    expect(displayElement.textContent).toEqual("9");
+  });
+
+  it("displays correct difference when the equal button is pressed", () => {
+    render(<App />);
+    const displayElement = screen.getByTestId("display");
+    const six = screen.getByTestId("six");
+    const minus = screen.getByTestId("subtract");
+    const three = screen.getByTestId("three");
+    const equals = screen.getByTestId("equals");
+    fireEvent.click(six);
+    fireEvent.click(minus);
+    fireEvent.click(three);
+    fireEvent.click(equals);
+    expect(displayElement.textContent).toEqual("3");
+  });
+
+  it("should allow user to perform operations on zero as first number", () => {
+    render(<App />);
+    const displayElement = screen.getByTestId("display");
+    const zero = screen.getByTestId("zero");
+    const multiply = screen.getByTestId("multiply");
+    const plus = screen.getByTestId("add");
+    const three = screen.getByTestId("three");
+    const equals = screen.getByTestId("equals");
+
+    fireEvent.click(zero);
+    fireEvent.click(multiply);
+    fireEvent.click(plus);
+    fireEvent.click(three);
+    fireEvent.click(equals);
+
+    expect(displayElement.textContent).toEqual("3");
+  });
+
+  it("resets display to initial state when clear button is pressed", () => {
+    render(<App />);
+    const displayElement = screen.getByTestId("display");
+    const clearButton = screen.getByTestId("clear");
+    fireEvent.click(clearButton);
+    expect(displayElement.textContent).toEqual("0");
+  });
 });

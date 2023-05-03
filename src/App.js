@@ -107,6 +107,10 @@ function App() {
     if (number === "0") {
       switch (true) {
         case firstNum === "" && secondNum === "":
+          setState({
+            ...state,
+            firstNum: number,
+          });
           break;
         case firstNum !== "" && secondNum === "" && operator !== "":
           setState({
@@ -237,7 +241,7 @@ function App() {
           action === "-":
           setState({ ...state, secondNum: action, text: text + " " + action });
           break;
-        case firstNum !== "" && secondNum === "":
+        case firstNum !== "" && firstNum !== "-" && secondNum === "":
           setState({
             ...state,
             operator: action,

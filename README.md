@@ -2,7 +2,7 @@
 
 This is a simple demo of a standard calculator implemented as a single page web application.
 
-The goal was to explore the implementation of the calculator logic and use that as fodder for test-writing practice.
+The goal was to explore the implementation of standard calculator logic and use that as a basis for test-driven development.
 
 ## Demo
 
